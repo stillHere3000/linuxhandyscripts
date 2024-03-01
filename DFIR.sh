@@ -11,7 +11,8 @@ ss --udp state CLOSE-WAIT --kill
 
 
 ps auxwf | grep "\["
-# no parent avbailable is a potential indicator of a hidden process
+# no parent avbailable is a potential indicator of a hidden
+# process
 
 # check for hidden files
 find / -type f -name ".*" -exec ls -l {} \;
@@ -24,3 +25,13 @@ ps auxww | grep \\[ | awk '{print $2}' | xargs -I % sh -c 'echo PID: %; cat /pro
 # you onto the problem fast. 
 
 ps auxwf | grep \\[ | grep -v "\_" | grep -v kthreadd
+
+#This command is a bit more complex, but it's a bit more
+# thorough. It will show you any [PID] that is not a child
+# of kthreadd, and it will also show you the parent process
+# of the [PID]. This is useful for tracking down the parent
+# process of the hidden process.
+
+sudo ps auxw | awk '{print $11}'| grep "^\." 
+# check for hidden files
+# check for hidden processes
