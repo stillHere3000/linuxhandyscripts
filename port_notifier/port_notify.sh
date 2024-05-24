@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# Runs as service check_ports.service on systemd to have real time threat monitoring.
+
 # Configuration
-HOST="0.0.0.0"
-INTERVAL=300 # Check every 60 seconds
+HOST="192.168.6.189"
+INTERVAL=60 # Check every 60 seconds
 EXCLUDE_PORTS=(3306 53 22 33060 25 8088 68 5353) # Ports to exclude
 OPEN_PORTS=() # Array to store open ports
 
